@@ -1,0 +1,114 @@
+[
+  {
+    "fields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "url",
+        "type": "url",
+        "title": "Project URL"
+      }
+    ],
+    "name": "projects",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 3
+              },
+              {
+                "flag": "max",
+                "constraint": 50
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "email",
+        "type": "string",
+        "title": "Email Address"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 5
+              },
+              {
+                "flag": "max",
+                "constraint": 150
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "message",
+        "type": "string"
+      }
+    ],
+    "name": "contactForm",
+    "type": "document"
+  }
+]
