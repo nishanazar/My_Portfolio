@@ -4,7 +4,7 @@ import React from 'react'
 const Navbar = () => {
   return (
     
-    <header className="bg-blue-900 text-white p-4">
+    <header className="bg-[#0F172A] text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="text-3xl font-bold">
           Nisha Nazar
