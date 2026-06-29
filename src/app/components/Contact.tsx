@@ -13,14 +13,12 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "../../components/ui/input"
-import { Textarea } from "../../components/ui/textarea" // Assuming you have a Textarea component for the message input
-import { client } from "@/sanity/lib/client"
+import { Textarea } from "../../components/ui/textarea"
 
-// Define form validation schema with Zod
 const formSchema = z.object({
   firstName: z.string().min(2, "First name is required").max(50),
   email: z.string().email("Please enter a valid email"),
-  message: z.string().min(10, "Message must be at least 10 characters"), // Add message validation
+  message: z.string().min(10, "Message must be at least 10 characters"),
 })
 
 const ContactForm = () => {
@@ -30,17 +28,7 @@ const ContactForm = () => {
     resolver: zodResolver(formSchema),
   })
 
-  // Function to handle form submission
   async function onSubmit(values: formType) {
-    // Insert data into Sanity
-    await client.create({
-      _type: "contactForm",
-      name: values.firstName,
-      email: values.email,
-      message: values.message, // Store the message field too
-    })
-
-    // Log form values for testing
     console.log(values)
   }
 
@@ -50,13 +38,11 @@ const ContactForm = () => {
         <h2 className="text-3xl font-semibold text-gray-800 mb-8">Contact Me</h2>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            {/* First Name Field */}
             <FormField
               control={form.control}
               name="firstName"
               render={({ field }) => (
                 <FormItem>
-                  {/* <FormLabel className="text-left">First Name</FormLabel> */}
                   <FormControl>
                     <Input
                       className="w-full p-6 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500"
@@ -68,14 +54,11 @@ const ContactForm = () => {
                 </FormItem>
               )}
             />
-
-            {/* Email Field */}
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  {/* <FormLabel className="text-left">Email</FormLabel> */}
                   <FormControl>
                     <Input
                       className="w-full p-6 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500"
@@ -87,14 +70,11 @@ const ContactForm = () => {
                 </FormItem>
               )}
             />
-
-            {/* Message Field */}
             <FormField
               control={form.control}
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  {/* <FormLabel className="text-left">Message</FormLabel> */}
                   <FormControl>
                     <Textarea
                       className="w-full p-6 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500"
@@ -106,8 +86,6 @@ const ContactForm = () => {
                 </FormItem>
               )}
             />
-
-            {/* Submit Button */}
             <Button
               type="submit"
               className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
